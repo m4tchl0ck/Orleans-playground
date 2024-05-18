@@ -1,0 +1,11 @@
+{
+	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils": {
+			"configureZshAsDefaultShell": true
+		},
+		"ghcr.io/elanhasson/devcontainer-features/dotnet-aspire-daily:1": {},
+		"ghcr.io/m4tchl0ck/devcontainer-features/powerlevel10k:1": {},
+		"ghcr.io/prulloac/devcontainer-features/chezmoi:1": {}
+	}
+}
