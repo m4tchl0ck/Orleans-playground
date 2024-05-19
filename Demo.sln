@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "Host\Host.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module1.Infeastructure.Out.OrleansStreamProducer", "Module1.Infeastructure.Out.OrleansStreamProducer\Module1.Infeastructure.Out.OrleansStreamProducer.csproj", "{AB82326B-168E-44A7-B78E-225B876236B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module2.Infrastructure.In.OrleansStreamConsumer", "Module2.Infrastructure.In.OrleansStreamConsumer\Module2.Infrastructure.In.OrleansStreamConsumer.csproj", "{1BCBD108-0CE9-4BBD-89D1-113C272F1DEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AB82326B-168E-44A7-B78E-225B876236B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB82326B-168E-44A7-B78E-225B876236B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB82326B-168E-44A7-B78E-225B876236B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BCBD108-0CE9-4BBD-89D1-113C272F1DEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BCBD108-0CE9-4BBD-89D1-113C272F1DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BCBD108-0CE9-4BBD-89D1-113C272F1DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BCBD108-0CE9-4BBD-89D1-113C272F1DEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

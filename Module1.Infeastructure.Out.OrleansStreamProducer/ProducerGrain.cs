@@ -38,7 +38,7 @@ public class ProducerGrain : Grain, IProducerGrain
     public Task StartPeriodicProducing()
     {
         logger.LogInformation("StartPeriodicProducing");
-        producerTimer = base.RegisterTimer(TimerCallback, new object(), TimeSpan.Zero, TimeSpan.FromMilliseconds(10));
+        producerTimer = base.RegisterTimer(TimerCallback, new object(), TimeSpan.Zero, TimeSpan.FromSeconds(10));
         return Task.CompletedTask;
     }
 

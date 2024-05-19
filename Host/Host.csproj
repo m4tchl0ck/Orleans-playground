@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Module1.Infeastructure.Out.OrleansStreamProducer\Module1.Infeastructure.Out.OrleansStreamProducer.csproj" />
+    <ProjectReference Include="..\Module2.Infrastructure.In.OrleansStreamConsumer\Module2.Infrastructure.In.OrleansStreamConsumer.csproj" />
   </ItemGroup>
 
 </Project>
