@@ -1,9 +1,19 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Orleans.Configuration;
 
 IHostBuilder builder = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration =>
+        configuration
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("appsettings.json", false)
+    )
+    .ConfigureLogging(logging =>
+    {
+        logging.AddConsole();
+    })
     .UseOrleans(silo =>
     {
         silo
@@ -52,7 +62,7 @@ IHostBuilder builder = Host.CreateDefaultBuilder(args)
             {
                 sqsOptions.ConnectionString = "Service=eu-west-1";
             })
-            .ConfigureLogging(logging => logging.AddConsole());;
+            .AddGrainService<InitService>();
     })
     .UseConsoleLifetime();
 
