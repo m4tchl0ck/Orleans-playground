@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Orleans.Configuration;
+using Serilog;
 
 IHostBuilder builder = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration(configuration =>
@@ -11,9 +12,17 @@ IHostBuilder builder = Host.CreateDefaultBuilder(args)
             .AddJsonFile("appsettings.json", false)
     )
     .ConfigureLogging(logging =>
-    {
-        logging.AddConsole();
-    })
+        logging.ClearProviders()
+    )
+    .ConfigureServices((builder, services) =>
+        services.AddSerilog(
+            config =>
+            {
+                config.ReadFrom.Configuration(builder.Configuration);
+                config.Enrich.FromLogContext();
+            },
+            writeToProviders: true)
+    )
     .UseOrleans(silo =>
     {
         silo
