@@ -1,42 +1,61 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Module1.Infeastructure.Out.OrleansStreamProducer;
-using Module2.Infrastructure.In.OrleansStreamConsumer;
+using Orleans.Configuration;
 
 IHostBuilder builder = Host.CreateDefaultBuilder(args)
     .UseOrleans(silo =>
     {
-        silo.UseLocalhostClustering()
-            .ConfigureLogging(logging => logging.AddConsole());
-        silo.AddMemoryStreams("StreamProvider")
-            .AddMemoryGrainStorage("PubSubStore");
+        silo
+            .AddDynamoDBGrainStorageAsDefault(
+                configureOptions: dynamoDbOptions =>
+                {
+                    dynamoDbOptions.TableName = "Monolith-Persistence";
+                    dynamoDbOptions.CreateIfNotExists = true;
+                    dynamoDbOptions.UseProvisionedThroughput = false;
+                    dynamoDbOptions.ReadCapacityUnits = 5;
+                    dynamoDbOptions.WriteCapacityUnits = 10;
+                    dynamoDbOptions.Service = "eu-west-1";
+                }
+            )
+            .Configure<ClusterOptions>(
+                clusterOptions =>
+                {
+                    clusterOptions.ClusterId = "Monolith-Cluster";
+                    clusterOptions.ServiceId = "Monolith-Service";
+                }
+            )
+            .UseDynamoDBClustering(
+                dynamoDbOptions =>
+                {
+                    dynamoDbOptions.TableName = "Monolith-Clustering";
+                    dynamoDbOptions.CreateIfNotExists = true;
+                    dynamoDbOptions.UseProvisionedThroughput = false;
+                    dynamoDbOptions.ReadCapacityUnits = 5;
+                    dynamoDbOptions.WriteCapacityUnits = 10;
+                    dynamoDbOptions.Service = "eu-west-1";
+                }
+            )
+            .AddDynamoDBGrainStorage(
+                name: "PubSubStore",
+                configureOptions: dynamoDbOptions =>
+                {
+                    dynamoDbOptions.TableName = "Monolith-PubSubStore";
+                    dynamoDbOptions.CreateIfNotExists = true;
+                    dynamoDbOptions.UseProvisionedThroughput = false;
+                    dynamoDbOptions.ReadCapacityUnits = 5;
+                    dynamoDbOptions.WriteCapacityUnits = 10;
+                    dynamoDbOptions.Service = "eu-west-1";
+                }
+            )
+            .AddSqsStreams("Monolith-StreamProvider", sqsOptions =>
+            {
+                sqsOptions.ConnectionString = "Service=eu-west-1";
+            })
+            .ConfigureLogging(logging => logging.AddConsole());;
     })
     .UseConsoleLifetime();
 
 using IHost host = builder.Build();
 
-await host.StartAsync();
-
-IClusterClient client = host.Services.GetRequiredService<IClusterClient>();
-
-var producer = client.GetGrain<IProducerGrain>(Guid.Empty);
-await producer.BecomeProducer(Guid.Empty, "stream.namespace", "StreamProvider");
-await producer.StartPeriodicProducing();
-
-
-var consumer = client.GetGrain<IConsumerGrain>(Guid.Empty);
-await consumer.BecomeConsumer(Guid.Empty, "stream.namespace", "StreamProvider");
-
-Console.WriteLine($"""
-
-
-    Press any key to exit...
-    """);
-
-Console.ReadKey();
-
-await producer.StopPeriodicProducing();
-await consumer.StopConsuming();
-
-await host.StopAsync();
+await host.RunAsync();

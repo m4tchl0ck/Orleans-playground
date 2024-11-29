@@ -4,7 +4,7 @@ using Orleans;
 using Orleans.Runtime;
 using Orleans.Streams;
 
-namespace Module1.Infeastructure.Out.OrleansStreamProducer;
+namespace Monolith.Producer;
 
 public class ProducerGrain : Grain, IProducerGrain
 {

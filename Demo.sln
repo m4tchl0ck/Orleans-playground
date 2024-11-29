@@ -5,9 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "Host\Host.csproj", "{57AA9680-AB0E-491B-994F-86A8F2E155A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module1.Infeastructure.Out.OrleansStreamProducer", "Module1.Infeastructure.Out.OrleansStreamProducer\Module1.Infeastructure.Out.OrleansStreamProducer.csproj", "{AB82326B-168E-44A7-B78E-225B876236B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Producer", "Producer\Producer.csproj", "{AB82326B-168E-44A7-B78E-225B876236B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module2.Infrastructure.In.OrleansStreamConsumer", "Module2.Infrastructure.In.OrleansStreamConsumer\Module2.Infrastructure.In.OrleansStreamConsumer.csproj", "{1BCBD108-0CE9-4BBD-89D1-113C272F1DEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer", "Consumer\Consumer.csproj", "{1BCBD108-0CE9-4BBD-89D1-113C272F1DEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

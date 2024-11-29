@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Orleans.Streams;
 
-namespace Module2.Infrastructure.In.OrleansStreamConsumer;
+namespace Monolith.Consumer;
 
 public class ConsumerGrain : Grain, IConsumerGrain
 {

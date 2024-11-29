@@ -1,11 +1,59 @@
 {
-	"image": "mcr.microsoft.com/devcontainers/universal:2",
-	"features": {
-		"ghcr.io/devcontainers/features/common-utils": {
-			"configureZshAsDefaultShell": true
-		},
-		"ghcr.io/elanhasson/devcontainer-features/dotnet-aspire-daily:1": {},
-		"ghcr.io/m4tchl0ck/devcontainer-features/powerlevel10k:1": {},
-		"ghcr.io/prulloac/devcontainer-features/chezmoi:1": {}
-	}
+  "name": "Monolith",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "monolith",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/rio/features/chezmoi:1": {},
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/devcontainers-contrib/features/fzf:1": {},
+    "ghcr.io/m4tchl0ck/devcontainer-features/powerlevel10k:1": {}
+  },
+  "initializeCommand": "touch ${localEnv:HOME}${localEnv:USERPROFILE}/.zsh_history.${devcontainerId}",
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.zsh_history.${devcontainerId},target=/home/vscode/.zsh_history,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.nuget,target=/home/vscode/.nuget,type=bind"
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "dotnet.defaultSolution": "dotnet/Monolith/Monolith.sln"
+      },
+      "extensions": [
+        "asciidoctor.asciidoctor-vscode",
+        "ckolkman.vscode-postgres",
+        "dotjoshjohnson.xml",
+        "editorconfig.editorconfig",
+        // commend co-pilot for c#
+        // "github.copilot",
+        // "github.copilot-chat",
+        "github.vscode-github-actions",
+        "github.vscode-pull-request-github",
+        "graphql.vscode-graphql",
+        "josefpihrt-vscode.roslynator",
+        "mhutchie.git-graph",
+        "ms-azuretools.vscode-docker",
+        "ms-dotnettools.csdevkit",
+        "patcx.vscode-nuget-gallery",
+        "redhat.vscode-yaml",
+        "humao.rest-client",
+        "tomrijndorp.find-it-faster"
+      ]
+    }
+  },
+  "remoteUser": "vscode",
+  "remoteEnv": {
+    "GIT_EDITOR": "code --wait"
+  },
+  "forwardPorts": [
+    5000,
+    5001,
+    5432,
+    8080,
+    9443
+  ]
 }

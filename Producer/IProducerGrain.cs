@@ -1,6 +1,6 @@
 using Orleans;
 
-namespace Module1.Infeastructure.Out.OrleansStreamProducer;
+namespace Monolith.Producer;
 
 public interface IProducerGrain : IGrainWithGuidKey
     {

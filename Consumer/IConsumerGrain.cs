@@ -1,4 +1,4 @@
-﻿namespace Module2.Infrastructure.In.OrleansStreamConsumer;
+﻿namespace Monolith.Consumer;
 
 public interface IConsumerGrain : IGrainWithGuidKey
 {
