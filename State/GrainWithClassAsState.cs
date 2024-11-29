@@ -1,10 +1,5 @@
 ﻿namespace Monolith.State;
-
-public interface IGrainWithClassAsState : IGrainWithStringKey
-{
-    Task Create();
-    Task<ClassAsState> GetState();
-}
+public interface IGrainWithClassAsState : ICreateable<ClassAsState>;
 
 public class GrainWithClassAsState : Grain<ClassAsState>, IGrainWithClassAsState
 {

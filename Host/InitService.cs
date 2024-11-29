@@ -15,13 +15,18 @@ public class InitService(
     public override async Task Start()
     {
         await base.Start();
+        await CreateGrain<IGrainWithClassAsState, ClassAsState>();
+        await CreateGrain<IGrainWithStructAsState, StructAsState>();
+    }
 
+    private async Task CreateGrain<TGrain, TState>() where TGrain : ICreateable<TState>
+    {
         var logger = loggerFactory.CreateLogger<IInitService>();
 
-        var grainWithClassAsState = grainFactory.GetGrain<IGrainWithClassAsState>("first");
+        var grainWithClassAsState = grainFactory.GetGrain<TGrain>("first");
         await grainWithClassAsState.Create();
 
         var state = await grainWithClassAsState.GetState();
-        logger.LogDebug("State os {grainType}: {@State}", nameof(IGrainWithClassAsState), state);
+        logger.LogDebug("Readed state: {@State}", state);
     }
 }
