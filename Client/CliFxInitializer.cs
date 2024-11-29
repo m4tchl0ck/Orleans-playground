@@ -14,6 +14,7 @@ public static class CliFxInitializer
                     .AddTransient<CheckDirtyStateCommand>()
                     .AddTransient<SendEvent>()
                     .AddTransient<StateAsClassCommand>()
+                    .AddTransient<StateAsStructCommand>()
                     .AddSingleton(sp => new CliApplicationBuilder()
                         .AddCommandsFromThisAssembly()
                         .UseTypeActivator(sp.GetRequiredService)
