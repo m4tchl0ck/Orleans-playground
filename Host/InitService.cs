@@ -20,6 +20,7 @@ public class InitService(
         // GrainWithStructWithPrivateFieldsAsState doesn't work as expected
         await CreateGrain<IGrainWithStructWithPrivateFieldsAsState, StructWithPrivateFieldsAsState>();
         await CreateGrain<IGrainWithClassWithPrivateFieldsAsState, ClassWithPrivateFieldsAsState>();
+        await CreateGrain<IGrainWithRecordWithPrivateFieldsAsState, RecordWithPrivateFieldsAsState>();
     }
 
     private async Task CreateGrain<TGrain, TState>()
