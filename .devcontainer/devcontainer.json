@@ -10,8 +10,7 @@
     "ghcr.io/devcontainers/features/common-utils:2": {
       "configureZshAsDefaultShell": true
     },
-    "ghcr.io/devcontainers-contrib/features/fzf:1": {},
-    "ghcr.io/m4tchl0ck/devcontainer-features/powerlevel10k:1": {}
+    "ghcr.io/devcontainers-contrib/features/fzf:1": {}
   },
   "initializeCommand": "touch ${localEnv:HOME}${localEnv:USERPROFILE}/.zsh_history.${devcontainerId}",
   "mounts": [
