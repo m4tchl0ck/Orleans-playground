@@ -19,11 +19,13 @@ public class GrainWithClassAsState : Grain<ClassAsState>, IGrainWithClassAsState
 }
 
 [GenerateSerializer]
-public class ClassAsState
+public class ClassAsState : IAgeable
 {
     [Id(0)]
     public string Name { get; set; } = string.Empty;
 
     [Id(1)]
     public int Age { get; set; }
+
+    public int GetAge() => Age;
 }

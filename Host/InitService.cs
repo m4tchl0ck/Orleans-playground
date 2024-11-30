@@ -17,16 +17,24 @@ public class InitService(
         await base.Start();
         await CreateGrain<IGrainWithClassAsState, ClassAsState>();
         await CreateGrain<IGrainWithStructAsState, StructAsState>();
+        // GrainWithStructWithPrivateFieldsAsState doesn't work as expected
+        await CreateGrain<IGrainWithStructWithPrivateFieldsAsState, StructWithPrivateFieldsAsState>();        
     }
 
-    private async Task CreateGrain<TGrain, TState>() where TGrain : ICreateable<TState>
+    private async Task CreateGrain<TGrain, TState>()
+        where TGrain : ICreateable<TState> 
+        where TState : IAgeable
     {
         var logger = loggerFactory.CreateLogger<IInitService>();
 
-        var grainWithClassAsState = grainFactory.GetGrain<TGrain>("first");
-        await grainWithClassAsState.Create();
+        var grain = grainFactory.GetGrain<TGrain>("first");
+        
+        var state = await grain.GetState();
+        logger.LogDebug("Readed state: {@State} age {age} before create", state, state.GetAge());
 
-        var state = await grainWithClassAsState.GetState();
-        logger.LogDebug("Readed state: {@State}", state);
+        await grain.Create();
+
+        state = await grain.GetState();
+        logger.LogDebug("Readed state: {@State} age {age} after create", state, state.GetAge());
     }
 }

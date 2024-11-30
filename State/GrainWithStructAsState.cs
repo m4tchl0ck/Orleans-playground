@@ -19,11 +19,13 @@ public class GrainWithStructAsState : Grain<StructAsState>, IGrainWithStructAsSt
 }
 
 [GenerateSerializer]
-public struct StructAsState(string name, int age)
+public struct StructAsState(string name, int age) : IAgeable
 {
     [Id(0)]
     public string Name { get; set; } = name;
 
     [Id(1)]
     public int Age { get; set; } = age;
+
+    public int GetAge() => Age;
 }
