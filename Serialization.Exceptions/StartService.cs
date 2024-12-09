@@ -16,8 +16,6 @@ public class StartService : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await Task.Delay(15000, stoppingToken);
-
         _logger.LogInformation("Starting...");
 
         var grain = _clusterClient.GetGrain<IThrowingGrain>("some-key");

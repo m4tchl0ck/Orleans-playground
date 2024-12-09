@@ -6,7 +6,7 @@ using Orleans.Configuration;
 using Serialization.Exceptions;
 using Serilog;
 
-public static class ClusterHostBuilder
+public static class HostBuilder
 {
     public static IHostBuilder CreateClusterHostBuilder(string[] args)
     {
@@ -27,7 +27,6 @@ public static class ClusterHostBuilder
                         config.Enrich.FromLogContext();
                     },
                     writeToProviders: true)
-                    .AddHostedService<StartService>()
             )
             .UseOrleans(silo =>
             {
@@ -78,6 +77,40 @@ public static class ClusterHostBuilder
                         sqsOptions.ConnectionString = "Service=eu-west-1";
                     })
                     .AddGrainService<StatesService>();
+            })
+            .UseConsoleLifetime();
+        return builder;
+    }
+
+    public static IHostBuilder CreateClientHostBuilder(string[] args)
+    {
+        IHostBuilder builder = Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration(configuration =>
+                configuration
+                    .SetBasePath(AppContext.BaseDirectory)
+                    .AddJsonFile("appsettings.json", false)
+            )
+            .ConfigureLogging(logging =>
+                logging.ClearProviders()
+            )
+            .ConfigureServices((builder, services) =>
+                services.AddSerilog(
+                    config =>
+                    {
+                        config.ReadFrom.Configuration(builder.Configuration);
+                        config.Enrich.FromLogContext();
+                    },
+                    writeToProviders: true)
+                    .AddHostedService<StartService>()
+            ).
+            UseOrleansClient(clientBuilder =>
+            {
+                clientBuilder.Configure<ClusterOptions>(
+                    clusterOptions =>
+                    {
+                        clusterOptions.ClusterId = "Monolith-Cluster";
+                        clusterOptions.ServiceId = "Monolith-Service";
+                    });
             })
             .UseConsoleLifetime();
         return builder;
