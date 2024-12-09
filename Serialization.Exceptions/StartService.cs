@@ -1,8 +1,6 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Serialization.Exceptions;
-
 public class StartService : BackgroundService
 {
     private readonly IClusterClient _clusterClient;
@@ -16,6 +14,7 @@ public class StartService : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        await Task.Delay(10000, stoppingToken);
         _logger.LogInformation("Starting...");
 
         var grain = _clusterClient.GetGrain<IThrowingGrain>("some-key");

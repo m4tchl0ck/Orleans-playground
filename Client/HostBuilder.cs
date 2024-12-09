@@ -7,7 +7,7 @@ using Serilog;
 
 public static class HostBuilder
 {
-    public static IHostBuilder CreateClusterHostBuilder(string[] args)
+    public static IHostBuilder CreateClientHostBuilder(string[] args)
     {
         IHostBuilder builder = Host.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration(configuration =>
@@ -24,31 +24,20 @@ public static class HostBuilder
                     {
                         config.ReadFrom.Configuration(builder.Configuration);
                         config.Enrich.FromLogContext();
-                        config.Enrich.WithProperty("Host", "cluster");
+                        config.Enrich.WithProperty("Host", "client");
                     },
                     writeToProviders: true)
-            )
-            .UseOrleans(silo =>
+                    .AddHostedService<StartService>()
+            ).
+            UseOrleansClient(clientBuilder =>
             {
-                silo
-                    .AddDynamoDBGrainStorageAsDefault(
-                        configureOptions: dynamoDbOptions =>
-                        {
-                            dynamoDbOptions.TableName = "Monolith-Persistence";
-                            dynamoDbOptions.CreateIfNotExists = true;
-                            dynamoDbOptions.UseProvisionedThroughput = false;
-                            dynamoDbOptions.ReadCapacityUnits = 5;
-                            dynamoDbOptions.WriteCapacityUnits = 10;
-                            dynamoDbOptions.Service = "eu-west-1";
-                        }
-                    )
+                clientBuilder
                     .Configure<ClusterOptions>(
                         clusterOptions =>
                         {
                             clusterOptions.ClusterId = "Monolith-Cluster";
                             clusterOptions.ServiceId = "Monolith-Service";
-                        }
-                    )
+                        })
                     .UseDynamoDBClustering(
                         dynamoDbOptions =>
                         {
@@ -59,24 +48,7 @@ public static class HostBuilder
                             dynamoDbOptions.WriteCapacityUnits = 10;
                             dynamoDbOptions.Service = "eu-west-1";
                         }
-                    )
-                    .AddDynamoDBGrainStorage(
-                        name: "PubSubStore",
-                        configureOptions: dynamoDbOptions =>
-                        {
-                            dynamoDbOptions.TableName = "Monolith-PubSubStore";
-                            dynamoDbOptions.CreateIfNotExists = true;
-                            dynamoDbOptions.UseProvisionedThroughput = false;
-                            dynamoDbOptions.ReadCapacityUnits = 5;
-                            dynamoDbOptions.WriteCapacityUnits = 10;
-                            dynamoDbOptions.Service = "eu-west-1";
-                        }
-                    )
-                    .AddSqsStreams("Monolith-StreamProvider", sqsOptions =>
-                    {
-                        sqsOptions.ConnectionString = "Service=eu-west-1";
-                    })
-                    .AddGrainService<StatesService>();
+                    );
             })
             .UseConsoleLifetime();
         return builder;

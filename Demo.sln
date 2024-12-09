@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "State", "State\State.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serialization.Exceptions", "Serialization.Exceptions\Serialization.Exceptions.csproj", "{C3E16884-E987-4F3E-BE49-D7C1840E4143}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{956CB5E7-0A6A-4E43-B63A-0CDEE239EC22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C3E16884-E987-4F3E-BE49-D7C1840E4143}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3E16884-E987-4F3E-BE49-D7C1840E4143}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3E16884-E987-4F3E-BE49-D7C1840E4143}.Release|Any CPU.Build.0 = Release|Any CPU
+		{956CB5E7-0A6A-4E43-B63A-0CDEE239EC22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{956CB5E7-0A6A-4E43-B63A-0CDEE239EC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{956CB5E7-0A6A-4E43-B63A-0CDEE239EC22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{956CB5E7-0A6A-4E43-B63A-0CDEE239EC22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

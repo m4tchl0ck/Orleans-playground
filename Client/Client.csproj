@@ -10,12 +10,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Orleans.Client" Version="8.2.0" />
     <PackageReference Include="Microsoft.Orleans.Clustering.DynamoDB" Version="8.2.0" />
-    <PackageReference Include="Microsoft.Orleans.Persistence.DynamoDB" Version="8.2.0" />
-    <PackageReference Include="Microsoft.Orleans.Reminders.DynamoDB" Version="8.2.0" />
-    <PackageReference Include="Microsoft.Orleans.Server" Version="8.2.0" />
-    <PackageReference Include="Microsoft.Orleans.Streaming" Version="8.2.0" />
-    <PackageReference Include="Microsoft.Orleans.Streaming.SQS" Version="8.2.0" />
     <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.4" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
@@ -23,9 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Serialization.Exceptions\Serialization.Exceptions.csproj" />
-    <ProjectReference Include="..\Consumer\Consumer.csproj" />
-    <ProjectReference Include="..\Producer\Producer.csproj" />
-    <ProjectReference Include="..\State\State.csproj" />
   </ItemGroup>
 
   <ItemGroup>

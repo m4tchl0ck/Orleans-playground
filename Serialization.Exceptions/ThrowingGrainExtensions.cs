@@ -1,7 +1,5 @@
 using Microsoft.Extensions.Logging;
 
-namespace Serialization.Exceptions;
-
 public static class ThrowingGrainExtensions
 {
     public static async Task WithExceptionHandling(

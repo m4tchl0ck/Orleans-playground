@@ -1,5 +1,3 @@
-namespace Serialization.Exceptions;
-
 public abstract class AbstractException : Exception
 {
     public string ErrorCode { get; }

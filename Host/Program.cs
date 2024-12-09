@@ -1,13 +1,10 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-IHostBuilder clusterHostBuilder = HostBuilder.CreateClusterHostBuilder(args);
-using IHost clusterHost = clusterHostBuilder.Build();
+await RunClusterHost(args);
 
-var clusterHostTask = clusterHost.RunAsync();
+static async Task RunClusterHost(string[] args)
+{
+    using IHost host = HostBuilder.CreateClusterHostBuilder(args).Build();
 
-using IHost clientHost = HostBuilder.CreateClientHostBuilder(args).Build();
-await Task.Delay(10000);
-
-await clientHost.StartAsync();
-
-await clusterHost.StopAsync();
+    await host.RunAsync();
+}

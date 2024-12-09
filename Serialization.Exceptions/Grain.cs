@@ -1,6 +1,4 @@
-﻿namespace Serialization.Exceptions;
-
-public interface IThrowingGrain : IGrainWithStringKey
+﻿public interface IThrowingGrain : IGrainWithStringKey
 {
     Task ThrowException();
     Task ThrowCustomException();
