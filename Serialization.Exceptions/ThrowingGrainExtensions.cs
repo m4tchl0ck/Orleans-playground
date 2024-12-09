@@ -1,8 +1,12 @@
+using Microsoft.Extensions.Logging;
+
 namespace Serialization.Exceptions;
 
 public static class ThrowingGrainExtensions
 {
-    public static async Task WithExceptionHandling(this IThrowingGrain grain, Func<IThrowingGrain, Task> action)
+    public static async Task WithExceptionHandling(
+        this IThrowingGrain grain, 
+        ILogger logger, Func<IThrowingGrain, Task> action)
     {
         try
         {
@@ -10,7 +14,7 @@ public static class ThrowingGrainExtensions
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message);
+            logger.LogError(e, "Exception occured");
         }
     }
 }
