@@ -6,27 +6,29 @@ public class CustomInheridException : AbstractException
     }
 }
 
-
 [GenerateSerializer]
 public struct CustomInheridExceptionTypeSurrogate
 {
     [Id(0)]
-    public string Message;
+    public readonly string ErrorMessage;
+
+    public CustomInheridExceptionTypeSurrogate(string errorMessage)
+    {
+        ErrorMessage = errorMessage;
+    }
 }
 
-// This is a converter that converts between the surrogate and the foreign type.
 [RegisterConverter]
-public sealed class CustomInheridExceptionTypeSurrogateConverter :
-    IConverter<CustomInheridException, CustomInheridExceptionTypeSurrogate>
+public class CustomInheridExceptionConverter : AbstractExceptionSurrogateConverter<CustomInheridException>;
+
+public abstract class AbstractExceptionSurrogateConverter<TAbstractException> :
+    IConverter<TAbstractException, CustomInheridExceptionTypeSurrogate> where TAbstractException : AbstractException
 {
-    public CustomInheridException ConvertFromSurrogate(
-        in CustomInheridExceptionTypeSurrogate surrogate) =>
-        new(surrogate.Message);
+    public TAbstractException ConvertFromSurrogate(
+        in CustomInheridExceptionTypeSurrogate surrogate)
+            => (TAbstractException)Activator.CreateInstance(type: typeof(TAbstractException), args: [surrogate.ErrorMessage])!;
 
     public CustomInheridExceptionTypeSurrogate ConvertToSurrogate(
-        in CustomInheridException value) =>
-        new()
-        {
-            Message = value.Message
-        };
+        in TAbstractException value)
+            => new(value.Message);
 }
