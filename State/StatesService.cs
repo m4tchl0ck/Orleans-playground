@@ -2,15 +2,16 @@
 
 using Microsoft.Extensions.Logging;
 using Monolith.State;
+using Orleans.Runtime;
 using Orleans.Services;
 
-public interface IInitService : IGrainService;
+public interface IStatesService : IGrainService;
 
-public class InitService(
+public class StatesService(
     GrainId grainId,
     Silo silo,
     ILoggerFactory loggerFactory,
-    IGrainFactory grainFactory) : GrainService(grainId, silo, loggerFactory), IInitService
+    IGrainFactory grainFactory) : GrainService(grainId, silo, loggerFactory), IStatesService
 {
     public override async Task Start()
     {
@@ -27,7 +28,7 @@ public class InitService(
         where TGrain : ICreateable<TState> 
         where TState : IAgeable
     {
-        var logger = loggerFactory.CreateLogger<IInitService>();
+        var logger = loggerFactory.CreateLogger<IStatesService>();
 
         var grain = grainFactory.GetGrain<TGrain>("first");
 

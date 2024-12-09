@@ -71,7 +71,7 @@ IHostBuilder builder = Host.CreateDefaultBuilder(args)
             {
                 sqsOptions.ConnectionString = "Service=eu-west-1";
             })
-            .AddGrainService<InitService>();
+            .AddGrainService<StatesService>();
     })
     .UseConsoleLifetime();
 
