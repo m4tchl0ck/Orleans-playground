@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../Serialization.Exceptions/Serialization.Exceptions.csproj" />
     <ProjectReference Include="..\Consumer\Consumer.csproj" />
     <ProjectReference Include="..\Producer\Producer.csproj" />
     <ProjectReference Include="..\State\State.csproj" />

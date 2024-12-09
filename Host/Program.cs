@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Orleans.Configuration;
+using Serialization.Exceptions;
 using Serilog;
 
 IHostBuilder builder = Host.CreateDefaultBuilder(args)
@@ -22,6 +23,7 @@ IHostBuilder builder = Host.CreateDefaultBuilder(args)
                 config.Enrich.FromLogContext();
             },
             writeToProviders: true)
+            .AddHostedService<StartService>()
     )
     .UseOrleans(silo =>
     {
@@ -71,7 +73,8 @@ IHostBuilder builder = Host.CreateDefaultBuilder(args)
             {
                 sqsOptions.ConnectionString = "Service=eu-west-1";
             })
-            .AddGrainService<StatesService>();
+            .AddGrainService<StatesService>()
+            ;
     })
     .UseConsoleLifetime();
 
