@@ -7,7 +7,7 @@ services:
       - SERVICES=sqs,dynamodb
       - AWS_DEFAULT_REGION=$AWS_REGION
     ports:
-      - "4566-4597:4566-4597"
+      - "14566-14597:4566-4597"
     volumes:
       - localstack:/var/lib/localstack
       - /var/run/docker.sock:/var/run/docker.sock
