@@ -23,6 +23,7 @@ public class StartService : BackgroundService
         var grain = _clusterClient.GetGrain<IThrowingGrain>("some-key");
         await grain.WithExceptionHandling(_logger, async g => await g.ThrowException());
         await grain.WithExceptionHandling(_logger, async g => await g.ThrowCustomException());
+        await grain.WithExceptionHandling(_logger, async g => await g.ThrowCustomInheridException());
 
         _logger.LogInformation("Finished");
     }

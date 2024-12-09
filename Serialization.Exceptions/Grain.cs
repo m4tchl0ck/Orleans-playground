@@ -4,6 +4,7 @@ public interface IThrowingGrain : IGrainWithStringKey
 {
     Task ThrowException();
     Task ThrowCustomException();
+    Task ThrowCustomInheridException();
 }
 
 public class ThrowingGrain : Grain, IThrowingGrain
@@ -17,11 +18,9 @@ public class ThrowingGrain : Grain, IThrowingGrain
     {
         throw new CustomException("Some custom exception");
     }
-}
 
-public class CustomException : Exception
-{
-    public CustomException(string message) : base(message)
+    public Task ThrowCustomInheridException()
     {
+        throw new CustomInheridException("Some custom child exception");
     }
 }
