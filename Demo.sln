@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serialization.Exceptions", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{956CB5E7-0A6A-4E43-B63A-0CDEE239EC22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCluster", "TestCluster\TestCluster.csproj", "{CE9737FD-7316-4F1D-A0B3-0D179872F2F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{956CB5E7-0A6A-4E43-B63A-0CDEE239EC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{956CB5E7-0A6A-4E43-B63A-0CDEE239EC22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{956CB5E7-0A6A-4E43-B63A-0CDEE239EC22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE9737FD-7316-4F1D-A0B3-0D179872F2F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE9737FD-7316-4F1D-A0B3-0D179872F2F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE9737FD-7316-4F1D-A0B3-0D179872F2F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE9737FD-7316-4F1D-A0B3-0D179872F2F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
