@@ -12,7 +12,7 @@ public class SerializationExceptionsTests : IAsyncLifetime
     }
 
     [Fact]
-    public async Task Test1()
+    public async Task ShouldThrowValidExceptionTypeTest()
     {
         // Arrange
         var grain = TestCluster.GrainFactory.GetGrain<IThrowingGrain>(Guid.NewGuid().ToString());
