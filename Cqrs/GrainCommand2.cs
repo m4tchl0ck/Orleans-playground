@@ -1,7 +1,7 @@
 namespace Cqrs;
 
 [GenerateSerializer]
-public record GrainCommand1(
+public record GrainCommand2(
     string Name,
     int Age
 ) : IGrainCommand
