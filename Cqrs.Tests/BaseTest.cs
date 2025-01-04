@@ -1,15 +1,13 @@
-using Cqrs;
-using Microsoft.Extensions.DependencyInjection;
-using Moq;
 using Orleans.TestingHost;
 
-public class CommandExecutionTests : IAsyncLifetime
+public abstract class BaseTest : IAsyncLifetime
 {
     TestCluster TestCluster { get; }
     Lazy<IServiceProvider> _serviceProviderLazy;
-    IServiceProvider ServiceProvider => _serviceProviderLazy.Value;
+    protected IServiceProvider ServiceProvider => _serviceProviderLazy.Value;
+    protected IClusterClient ClusterClient => TestCluster.Client;
 
-    public CommandExecutionTests()
+    public BaseTest()
     {
         var builder = new TestClusterBuilder(1);
         TestCluster = builder
@@ -18,20 +16,6 @@ public class CommandExecutionTests : IAsyncLifetime
 
         _serviceProviderLazy = new(() => 
             TestCluster.Silos.Cast<InProcessSiloHandle>().Single().SiloHost.Services);
-    }
-
-    [Fact]
-    public async Task SimpleBus_Should_Pass()
-    {
-        // Arrange
-        var cmd = new SimpleCommand1("Name", 42);
-        var bus = new SimpleBus(ServiceProvider);
-        // Act
-
-        await bus.Send(cmd);
-        // Assert
-        var somethingMock = ServiceProvider.GetRequiredService<Mock<ISomething>>();
-        somethingMock.Verify(x => x.Do(cmd.Name, cmd.Age), Times.Once);
     }
 
     public async Task InitializeAsync()
