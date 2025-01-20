@@ -48,5 +48,8 @@
     "GIT_EDITOR": "code --wait"
   },
   "forwardPorts": [
+    3000, 
+    4317,
+    4318
   ]
 }
