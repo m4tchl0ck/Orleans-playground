@@ -76,7 +76,8 @@ public static class HostBuilder
                     {
                         sqsOptions.ConnectionString = "Service=eu-west-1";
                     })
-                    .AddGrainService<StatesService>();
+                    .AddGrainService<StatesService>()
+                    .AddActivityPropagation();
             })
             .UseConsoleLifetime();
         return builder;
