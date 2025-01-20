@@ -12,3 +12,8 @@ chmod +x ./otel-dotnet-auto-install.sh
 
 
 https://opentelemetry.io/docs/zero-code/net/configuration/#exporters
+
+
+## Grafana
+
+## Dashboards
