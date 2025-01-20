@@ -15,6 +15,7 @@ public static class HostBuilder
                     .UseLocalhostClustering(
                         siloPort: 11111,
                         gatewayPort: 30001)
-                    .UseDashboard(o => {}))
+                    .UseDashboard(o => {})
+                    .AddActivityPropagation())
             .UseConsoleLifetime();
 }
