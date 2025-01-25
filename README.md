@@ -17,3 +17,5 @@ https://opentelemetry.io/docs/zero-code/net/configuration/#exporters
 ## Grafana
 
 ## Dashboards
+
+https://grafana.com/grafana/dashboards/20568-opentelemetry-dotnet-webapi/
