@@ -28,6 +28,19 @@ services:
     networks:
       - my-network
 
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - SERVICES=sqs,dynamodb
+      - AWS_DEFAULT_REGION=eu-west-1
+    ports:
+      - "4566-4597:4566-4597"
+    volumes:
+      - localstack:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - my-network
+
 volumes:
   localstack:
     driver: local
