@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -15,13 +16,15 @@ using IHost siloHost = Host
                 logging.ClearProviders()
             )
             .ConfigureServices((builder, services) =>
-                services.AddSerilog(
-                    config =>
-                    {
-                        config.ReadFrom.Configuration(builder.Configuration);
-                        config.Enrich.FromLogContext();
-                    },
-                    writeToProviders: true)
+                services
+                    .AddSerilog(
+                        config =>
+                        {
+                            config.ReadFrom.Configuration(builder.Configuration);
+                            config.Enrich.FromLogContext();
+                        },
+                        writeToProviders: true)
+                    .AddHostedService<Worker>()
             )
     .UseOrleans()
     .Build();
