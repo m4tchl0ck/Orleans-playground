@@ -1,10 +1,5 @@
 using Microsoft.Extensions.Logging;
 
-public interface IHelloWorld : IGrainWithStringKey
-{
-    Task<string> SayHello(string greeting);
-}
-
 public class HelloWorld(ILogger<HelloWorld> logger) : Grain, IHelloWorld
 {
     public Task<string> SayHello(string greeting)
