@@ -16,6 +16,7 @@ public static class OrleansInitializer
                         siloPort: 11111,
                         gatewayPort: 30001)
                     .UseDashboard(o => {})
-                    .AddActivityPropagation())
+                    .AddActivityPropagation()
+                    .AddMemoryGrainStorageAsDefault())
             .UseConsoleLifetime();
 }
