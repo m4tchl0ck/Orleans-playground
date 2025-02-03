@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CliFx;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -23,10 +24,13 @@ using IHost clientHost = Host
                 config.Enrich.WithProperty("Host", "client");
             },
             writeToProviders: true)
-            .AddHostedService<Worker>()
     )
     .UseClusterClient()
-    .UseConsoleLifetime()
+    .UseCliFx()
     .Build();
+await clientHost.StartAsync();
 
-await clientHost.RunAsync();
+var cliApplication = clientHost.Services.GetRequiredService<CliApplication>();
+await cliApplication.RunAsync(args);
+
+await clientHost.StopAsync();
