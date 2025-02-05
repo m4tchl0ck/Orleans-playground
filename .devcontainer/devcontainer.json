@@ -47,5 +47,6 @@
     "GIT_EDITOR": "code --wait"
   },
   "forwardPorts": [
+    8080
   ]
 }
