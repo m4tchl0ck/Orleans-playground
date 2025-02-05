@@ -14,6 +14,7 @@ public static class HostBuilder
                                 .BindConfiguration(nameof(ClusterOptions)))
                     .UseLocalhostClustering(
                         siloPort: 11111,
-                        gatewayPort: 30001))
+                        gatewayPort: 30001)
+                    .UseDashboard(o => {}))
             .UseConsoleLifetime();
 }
