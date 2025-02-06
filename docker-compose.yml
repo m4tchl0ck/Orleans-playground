@@ -1,0 +1,6 @@
+services:
+  host:
+    image: ${DOCKER_REGISTRY-}host
+    build:
+      context: .
+      dockerfile: Host/Dockerfile
