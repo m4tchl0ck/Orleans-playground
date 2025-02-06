@@ -1,0 +1,6 @@
+services:
+  silo:
+    image: ${DOCKER_REGISTRY-}silo
+    build:
+      context: .
+      dockerfile: Silo/Dockerfile
