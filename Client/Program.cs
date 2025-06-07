@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Serilog;
 
 using IHost clientHost = Host
     .CreateDefaultBuilder(args)
@@ -15,19 +14,11 @@ using IHost clientHost = Host
     .ConfigureLogging(logging =>
         logging.ClearProviders()
     )
-    .ConfigureServices((builder, services) =>
-        services.AddSerilog(
-            config =>
-            {
-                config.ReadFrom.Configuration(builder.Configuration);
-                config.Enrich.FromLogContext();
-                config.Enrich.WithProperty("Host", "client");
-            },
-            writeToProviders: true)
-    )
+    .UseObservability()
     .UseClusterClient()
     .UseCliFx()
     .Build();
+
 await clientHost.StartAsync();
 
 var cliApplication = clientHost.Services.GetRequiredService<CliApplication>();
