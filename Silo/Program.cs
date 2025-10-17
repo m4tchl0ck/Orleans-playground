@@ -9,6 +9,7 @@ using IHost siloHost = Host
                 configuration
                     .SetBasePath(AppContext.BaseDirectory)
                     .AddJsonFile("appsettings.json", false)
+                    .ApplyTemplates()
             )
             .ConfigureLogging(logging =>
                 logging.ClearProviders()
