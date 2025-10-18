@@ -44,3 +44,8 @@ public class StateAsStructCommand(
 public class StateAsStructWithPrivateFieldsCommand(
     IClusterClient clusterClient,
     ILogger<StateAsStructWithPrivateFieldsCommand> logger) : StateCommand<IGrainWithStateAsStructWithPrivateFields>(clusterClient, logger);
+
+[Command("state-as-class-with-private-fields")]
+public class StateAsClassWithPrivateFieldsCommand(
+    IClusterClient clusterClient,
+    ILogger<StateAsClassWithPrivateFieldsCommand> logger) : StateCommand<IGrainWithStateAsClassWithPrivateFields>(clusterClient, logger);
