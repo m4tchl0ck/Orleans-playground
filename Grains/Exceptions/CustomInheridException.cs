@@ -6,27 +6,31 @@ public class CustomInheridException : AbstractException
     }
 }
 
+[RegisterConverter]
+public class CustomInheridExceptionConverter : AbstractExceptionSurrogateConverter<CustomInheridException>;
+
 [GenerateSerializer]
 public struct CustomInheridExceptionTypeSurrogate
 {
     [Id(0)]
-    public string Message;
+    public readonly string ErrorMessage;
+
+    public CustomInheridExceptionTypeSurrogate(string errorMessage)
+    {
+        ErrorMessage = errorMessage;
+    }
 }
 
-[RegisterConverter]
-public sealed class CustomInheridExceptionTypeSurrogateConverter :
-    IConverter<CustomInheridException, CustomInheridExceptionTypeSurrogate>
+public abstract class AbstractExceptionSurrogateConverter<TAbstractException> :
+    IConverter<TAbstractException, CustomInheridExceptionTypeSurrogate> where TAbstractException : AbstractException
 {
-    public CustomInheridException ConvertFromSurrogate(
-        in CustomInheridExceptionTypeSurrogate surrogate) =>
-        new(surrogate.Message);
+    public TAbstractException ConvertFromSurrogate(
+        in CustomInheridExceptionTypeSurrogate surrogate)
+            => (TAbstractException)Activator.CreateInstance(type: typeof(TAbstractException), args: [surrogate.ErrorMessage])!;
 
     public CustomInheridExceptionTypeSurrogate ConvertToSurrogate(
-        in CustomInheridException value) =>
-        new()
-        {
-            Message = value.Message
-        };
+        in TAbstractException value)
+            => new(value.Message);
 }
 
 public abstract class AbstractException : Exception
