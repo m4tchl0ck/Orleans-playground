@@ -5,4 +5,9 @@ public class ThrowingGrain : Grain, IThrowingGrain
     {
         throw new Exception("Some exception");
     }
+
+    public Task ThrowCustomException()
+    {
+        throw new CustomException("Some custom exception");
+    }
 }
