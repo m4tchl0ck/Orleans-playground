@@ -11,9 +11,12 @@ public abstract class StateCommand<TGrain>(
     ILogger<StateCommand<TGrain>> logger) : ICommand
     where TGrain : ICreateable
 {
+    [CommandOption("grainId", 'g')]
+    public string GrainId { get; init; } = "grain1-0";
+
     public async ValueTask ExecuteAsync(IConsole console)
     {
-        var grain = clusterClient.GetGrain<TGrain>("grain1-0");
+        var grain = clusterClient.GetGrain<TGrain>(GrainId);
 
         await grain.Create();
 
