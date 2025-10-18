@@ -2,6 +2,7 @@ public interface IThrowingGrain : IGrainWithStringKey
 {
     Task ThrowException();
     Task ThrowCustomException();
+    Task ThrowCustomInheridException();
 }
 
 [GenerateSerializer]

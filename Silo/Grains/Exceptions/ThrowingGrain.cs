@@ -10,4 +10,9 @@ public class ThrowingGrain : Grain, IThrowingGrain
     {
         throw new CustomException("Some custom exception");
     }
+
+    public Task ThrowCustomInheridException()
+    {
+        throw new CustomInheridException("Some custom child exception");
+    }
 }
