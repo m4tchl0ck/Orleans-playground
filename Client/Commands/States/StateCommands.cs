@@ -6,10 +6,10 @@ using CliFx.Infrastructure;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-public abstract class StateCommand<TGrain, TState>(
+public abstract class StateCommand<TGrain>(
     IClusterClient clusterClient,
-    ILogger<StateCommand<TGrain, TState>> logger) : ICommand
-    where TGrain : ICreateable<TState>
+    ILogger<StateCommand<TGrain>> logger) : ICommand
+    where TGrain : ICreateable
 {
     public async ValueTask ExecuteAsync(IConsole console)
     {
@@ -28,10 +28,9 @@ public abstract class StateCommand<TGrain, TState>(
 [Command("state-as-class")]
 public class StateAsClassCommand(
     IClusterClient clusterClient,
-    ILogger<StateAsClassCommand> logger) : StateCommand<IGrainWithStateAsClass, StateAsClass>(clusterClient, logger);
-
+    ILogger<StateAsClassCommand> logger) : StateCommand<IGrainWithStateAsClass>(clusterClient, logger);
 
 [Command("state-as-struct")]
 public class StateAsStructCommand(
     IClusterClient clusterClient,
-    ILogger<StateAsStructCommand> logger) : StateCommand<IGrainWithStateAsStruct, StateAsStruct>(clusterClient, logger);
+    ILogger<StateAsStructCommand> logger) : StateCommand<IGrainWithStateAsStruct>(clusterClient, logger);

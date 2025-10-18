@@ -1,14 +1,6 @@
-﻿namespace Monolith.State;
-
-public class GrainWithStateAsClass : Grain<StateAsClass>, IGrainWithStateAsClass
+﻿public class GrainWithStateAsClass : GrainWithState<StateAsClass>, IGrainWithStateAsClass
 {
-    public async Task<StateAsClass> GetState()
-    {
-        await ReadStateAsync();
-        return State;
-    }
-
-    public async Task Create()
+    public override async Task Create()
     {
         State.Name = "John Doe";
         State.Age = 30;
