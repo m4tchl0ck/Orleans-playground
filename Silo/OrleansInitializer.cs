@@ -25,6 +25,15 @@ public static class OrleansInitializer
                     .AddActivityPropagation()
                     .AddMemoryGrainStorageAsDefault()
                     .AddDynamoDBGrainStorageAsDefault()
+                    .AddSqsStreams(StreamConstants.ProviderName, static (SiloSqsStreamConfigurator options) =>
+                    {
+                        options.ConfigurePartitioning(1);
+                        options.ConfigureStreamPubSub(Orleans.Streams.StreamPubSubType.ImplicitOnly);
+                        options.ConfigureSqs(builder =>
+                        {
+                            builder.Configure(o => o.ConnectionString = "Service=us-east-1");
+                        });
+                    })
             )
             .UseConsoleLifetime();
 }
