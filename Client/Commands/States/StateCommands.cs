@@ -18,13 +18,15 @@ public abstract class StateCommand<TGrain>(
     {
         var grain = clusterClient.GetGrain<TGrain>(GrainId);
 
+        var initState = await grain.GetState();
+        logger.LogDebug("Init state: {@State}", initState);
+        await console.Output.WriteLineAsync($"Init State: {JsonConvert.SerializeObject(initState, Formatting.Indented)}");
+
         await grain.Create();
 
         var state = await grain.GetState();
-
-        logger.LogDebug("Readed state: {@State}", state);
-
-        await console.Output.WriteLineAsync($"State: {JsonConvert.SerializeObject(state, Formatting.Indented)}");
+        logger.LogDebug("State after create: {@State}", state);
+        await console.Output.WriteLineAsync($"State after create: {JsonConvert.SerializeObject(state, Formatting.Indented)}");
     }
 }
 
@@ -37,3 +39,8 @@ public class StateAsClassCommand(
 public class StateAsStructCommand(
     IClusterClient clusterClient,
     ILogger<StateAsStructCommand> logger) : StateCommand<IGrainWithStateAsStruct>(clusterClient, logger);
+
+[Command("state-as-struct-with-private-fields")]
+public class StateAsStructWithPrivateFieldsCommand(
+    IClusterClient clusterClient,
+    ILogger<StateAsStructWithPrivateFieldsCommand> logger) : StateCommand<IGrainWithStateAsStructWithPrivateFields>(clusterClient, logger);
