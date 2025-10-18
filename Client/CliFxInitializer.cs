@@ -17,6 +17,7 @@ public static class CliFxInitializer
                     .AddTransient<StateAsStructCommand>()
                     .AddTransient<StateAsStructWithPrivateFieldsCommand>()
                     .AddTransient<StateAsClassWithPrivateFieldsCommand>()
+                    .AddTransient<StateAsRecordWithPrivateFieldsCommand>()
                     .AddSingleton(sp => new CliApplicationBuilder()
                         .AddCommandsFromThisAssembly()
                         .UseTypeActivator(sp.GetRequiredService)
