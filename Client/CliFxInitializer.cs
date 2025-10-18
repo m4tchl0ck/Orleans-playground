@@ -11,6 +11,7 @@ public static class CliFxInitializer
                 collection
                     .AddTransient<InteractiveCommand>()
                     .AddTransient<SayHelloCommand>()
+                    .AddTransient<CheckDirtyStateCommand>()
                     .AddSingleton(sp => new CliApplicationBuilder()
                         .AddCommandsFromThisAssembly()
                         .UseTypeActivator(sp.GetRequiredService)
