@@ -9,26 +9,28 @@ public static class ConfigurationTemplates
         const string end = "}}";
 
         var newValues = configuration.AsEnumerable(true)
-            .Where(section => !string.IsNullOrEmpty(section.Value))
-            .Where(section => section.Value.Contains(start) && section.Value.Contains(end))
+            .Where(section => section.Value != null
+                && section.Value.Contains(start)
+                && section.Value.Contains(end))
             .Select(section =>
             {
                 string pattern = $@"\{start}(.*?)\{end}";
-                var matches = System.Text.RegularExpressions.Regex.Matches(section.Value, pattern);
-                var newValue = section.Value;
+                var newValue = section.Value ?? string.Empty;
+                var matches = System.Text.RegularExpressions.Regex.Matches(newValue, pattern);
                 foreach (System.Text.RegularExpressions.Match match in matches)
                 {
                     string valuePath = match.Groups[1].Value;
                     var value = configuration[valuePath];
                     newValue = newValue.Replace(match.Value, value ?? string.Empty);
                 }
-                return new KeyValuePair<string, string>(
+                return new KeyValuePair<string, string?>(
                     section.Key,
                     newValue
                 );
-            });
+            })
+            .ToArray();
 
-        configurationBuilder.AddInMemoryCollection(newValues);
+        _ = configurationBuilder.AddInMemoryCollection(newValues);
 
         return configurationBuilder;
     }
