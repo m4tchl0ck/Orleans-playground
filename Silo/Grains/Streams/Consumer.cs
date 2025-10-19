@@ -42,11 +42,11 @@ public class Consumer(ILogger<Consumer> logger) : Grain, IConsumer, IStreamSubsc
 
         logger.LogWarning("Subscribing to stream {StreamId}", handleFactory.StreamId.Namespace);
 
-        if (handleFactory.StreamId == StreamId.Create(StreamConstants.Namespace1, this.GetPrimaryKeyString()))
+        if (handleFactory.StreamId.IsNamespace(StreamConstants.Namespace1))
         {
             handleFactory.Create<SomeEvent1>().ResumeAsync(this);
         }
-        if (handleFactory.StreamId == StreamId.Create(StreamConstants.Namespace2, this.GetPrimaryKeyString()))
+        if (handleFactory.StreamId.IsNamespace(StreamConstants.Namespace2))
         {
             handleFactory.Create<SomeEvent2>().ResumeAsync(this);
         }
