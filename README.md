@@ -1,21 +1,24 @@
-# 
+# Orleans Playground
 
-## OpenTelemetry dotnet AutoInstrumentation
+## Devcontainer
 
-https://opentelemetry.io/docs/zero-code/net/getting-started/
+Running devcontainer starts background services
 
-curl -L -O https://github.com/open-telemetry/opentelemetry-dotnet-instrumentation/releases/latest/download/otel-dotnet-auto-install.sh
-chmod +x ./otel-dotnet-auto-install.sh
-./otel-dotnet-auto-install.sh
+* [Grafana](https://grafana.com/blog/2025/07/08/observability-in-under-5-seconds-reflecting-on-a-year-of-grafana/otel-lgtm/) - https://localhost:3000
+* [Localstack](https://www.localstack.cloud/) 
 
-. $HOME/.otel-dotnet-auto/instrument.sh
+## Running
 
+Run Silo
 
-https://opentelemetry.io/docs/zero-code/net/configuration/#exporters
+```sh
+dotnet run Silo/Silo.csproj
+```
 
+Use Client
 
-## Grafana
+```
+dotnet run Client/Client.csproj
+```
 
-## Dashboards
-
-https://grafana.com/grafana/dashboards/20568-opentelemetry-dotnet-webapi/
+type `help` to list client commands
