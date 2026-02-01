@@ -1,25 +1,27 @@
 {
-  "name": "Orleans Playground",
-  "dockerComposeFile": "docker-compose.yaml",
-  "service": "orleans-dev",
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "name": "OrleansPlayground Development Container",
+  "dockerComposeFile": [
+    "docker-compose.yaml"
+  ],
+  "runServices": [],
+  "service": "development",
+  "workspaceFolder": "/workspace/",
   "features": {
-    "ghcr.io/devcontainers/features/aws-cli:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/rio/features/chezmoi:1": {},
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "configureZshAsDefaultShell": true
-    }
   },
-  "initializeCommand": "touch ${localEnv:HOME}${localEnv:USERPROFILE}/.zsh_history.${devcontainerId}",
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.zsh_history.${devcontainerId},target=/home/vscode/.zsh_history,type=bind",
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.nuget,target=/home/vscode/.nuget,type=bind"
+    "source=${localEnv:HOME}/dev-containers/OrleansPlayground/home,target=/root,type=bind",
+    "source=${localEnv:HOME}/.nuget,target=/root/.nuget,type=bind",
+    "source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind",
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+    "source=${localEnv:HOME}/.claude,target=/root/.claude,type=bind",
+    "source=${localEnv:HOME}/.codex,target=/root/.codex,type=bind",
+    "source=${localEnv:HOME}/.gnupg/S.gpg-agent,target=/run/gnupg/S.gpg-agent,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.gnupg/S.scdaemon,target=/run/gnupg/S.scdaemon,type=bind,consistency=cached"
   ],
   "customizations": {
     "vscode": {
       "settings": {
-        "dotnet.defaultSolution": "dotnet/Monolith/Monolith.sln"
+        "dotnet.defaultSolution": "OrleansPlayground.sln"
       },
       "extensions": [
         "asciidoctor.asciidoctor-vscode",
@@ -42,8 +44,10 @@
       ]
     }
   },
-  "remoteUser": "vscode",
+  "remoteUser": "root",
   "remoteEnv": {
+    "GPG_TTY": "${localEnv:TERM}",
+    "GNUPG_SOCKETS_DIR": "/run/gnupg",
     "GIT_EDITOR": "code --wait"
   },
   "forwardPorts": [
