@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json.schemastore.org/dotnetcli.host",
+  "symbolInfo": {
+    "ClusterId": {
+      "longName": "cluster-id",
+      "shortName": "c"
+    },
+    "ServiceId": {
+      "longName": "service-id",
+      "shortName": "s"
+    },
+    "SiloPort": {
+      "longName": "silo-port"
+    },
+    "GatewayPort": {
+      "longName": "gateway-port"
+    },
+    "DynamoTableName": {
+      "longName": "dynamo-table"
+    },
+    "AwsRegion": {
+      "longName": "aws-region"
+    },
+    "AwsServiceRegion": {
+      "longName": "aws-service-region"
+    },
+    "GrafanaEndpoint": {
+      "longName": "grafana-endpoint"
+    },
+    "SiloServiceName": {
+      "longName": "silo-service-name"
+    },
+    "ClientServiceName": {
+      "longName": "client-service-name"
+    },
+    "SiloActivitySourceName": {
+      "longName": "silo-activity-source"
+    },
+    "ClientActivitySourceName": {
+      "longName": "client-activity-source"
+    },
+    "Examples": {
+      "longName": "examples",
+      "shortName": "e"
+    }
+  }
+}

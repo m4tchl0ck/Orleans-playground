@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "m4tchl0ck",
+  "classifications": [
+    "Orleans",
+    "Actors",
+    "Distributed Systems",
+    "Virtual Actor Model"
+  ],
+  "identity": "Yo.Orleans.Init.Template",
+  "name": "Yo Orleans Init Solution Template",
+  "shortName": "yo-orleans-init",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "OrleansPlayground",
+  "preferNameDirectory": true,
+  "symbols": {
+    "ClusterId": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "my-cluster",
+      "replaces": "my-cluster",
+      "description": "The Orleans cluster identifier"
+    },
+    "ServiceId": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "my-service",
+      "replaces": "my-service",
+      "description": "The Orleans service identifier"
+    },
+    "SiloPort": {
+      "type": "parameter",
+      "datatype": "integer",
+      "defaultValue": "11111",
+      "replaces": "11111",
+      "description": "The silo communication port"
+    },
+    "GatewayPort": {
+      "type": "parameter",
+      "datatype": "integer",
+      "defaultValue": "30001",
+      "replaces": "30001",
+      "description": "The client gateway port"
+    },
+    "DynamoTableName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "default-table",
+      "replaces": "default-table",
+      "description": "The DynamoDB table name for grain storage"
+    },
+    "AwsRegion": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "eu-west-1",
+      "replaces": "eu-west-1",
+      "description": "The AWS region for DynamoDB and SQS"
+    },
+    "AwsServiceRegion": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "us-east-1",
+      "replaces": "us-east-1",
+      "description": "The AWS service region for connection strings"
+    },
+    "GrafanaEndpoint": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "http://grafana:4318",
+      "replaces": "http://grafana:4318",
+      "description": "The OpenTelemetry OTLP endpoint"
+    },
+    "SiloServiceName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "MySilo",
+      "replaces": "MySilo",
+      "description": "The observability service name for the silo"
+    },
+    "ClientServiceName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "MyClient",
+      "replaces": "MyClient",
+      "description": "The observability service name for the client"
+    },
+    "SiloActivitySourceName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "my-silo",
+      "replaces": "my-silo",
+      "description": "The ActivitySource name for silo tracing"
+    },
+    "ClientActivitySourceName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "my-client",
+      "replaces": "my-client",
+      "description": "The ActivitySource name for client tracing"
+    },
+    "IncludeAdvancedExamples": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include advanced example commands (streams, states, interceptors, exceptions)"
+    }
+  },
+  "sources": [
+    {
+      "exclude": [
+        "Directory.Build.props",
+        "**/bin/**",
+        "**/obj/**"
+      ],
+      "include": [
+        ".devcontainer/**",
+        "Client/*",
+        "Client/Commands/SayHelloCommand.cs",
+        "Contracts/*",
+        "Contracts/Streams/StreamConstants.cs",
+        "Silo/*",
+        "OrleansPlayground.sln"
+      ]
+    }
+  ]
+}

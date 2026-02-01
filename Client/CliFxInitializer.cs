@@ -11,6 +11,7 @@ public static class CliFxInitializer
                 collection
                     .AddTransient<InteractiveCommand>()
                     .AddTransient<SayHelloCommand>()
+#if (INCLUDE_ADVANCED_EXAMPLES)
                     .AddTransient<CheckDirtyStateCommand>()
                     .AddTransient<SendEvent1>()
                     .AddTransient<SendEvent2>()
@@ -22,6 +23,7 @@ public static class CliFxInitializer
                     .AddTransient<ThrowExceptionCommand>()
                     .AddTransient<ThrowCustomExceptionCommand>()
                     .AddTransient<ThrowCustomInheritExceptionCommand>()
+#endif
                     .AddSingleton(sp => new CliApplicationBuilder()
                         .AddCommandsFromThisAssembly()
                         .UseTypeActivator(sp.GetRequiredService)

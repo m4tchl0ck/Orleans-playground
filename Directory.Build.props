@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <!-- Define this symbol in the source repo to include advanced examples -->
+    <!-- This file is excluded from the template -->
+    <DefineConstants>$(DefineConstants);INCLUDE_ADVANCED_EXAMPLES</DefineConstants>
+  </PropertyGroup>
+</Project>
