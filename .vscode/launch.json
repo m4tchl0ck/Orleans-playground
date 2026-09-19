@@ -13,7 +13,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Silo/bin/Debug/net8.0/Silo.dll",
+            "program": "${workspaceFolder}/Silo/bin/Debug/net10.0/Silo.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Silo",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
@@ -30,7 +30,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Client/bin/Debug/net8.0/Client.dll",
+            "program": "${workspaceFolder}/Client/bin/Debug/net10.0/Client.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Client",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
