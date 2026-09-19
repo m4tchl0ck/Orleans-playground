@@ -1,13 +1,13 @@
 using CliFx;
-using CliFx.Attributes;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 
 [Command("say-hello")]
-public class SayHelloCommand(
+public partial class SayHelloCommand(
     IClusterClient clusterClient) : ICommand
 {
     [CommandOption("greeting", 'g')]
-    public string Greeting { get; init; } = "Hello, World!";
+    public string Greeting { get; set; } = "Hello, World!";
 
     public async ValueTask ExecuteAsync(IConsole console)
     {

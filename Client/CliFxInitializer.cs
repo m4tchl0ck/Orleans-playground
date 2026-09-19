@@ -24,9 +24,9 @@ public static class CliFxInitializer
                     .AddTransient<ThrowCustomExceptionCommand>()
                     .AddTransient<ThrowCustomInheritExceptionCommand>()
 #endif
-                    .AddSingleton(sp => new CliApplicationBuilder()
+                    .AddSingleton(sp => new CommandLineApplicationBuilder()
                         .AddCommandsFromThisAssembly()
-                        .UseTypeActivator(sp.GetRequiredService)
+                        .UseTypeInstantiator(sp.GetRequiredService)
                         .Build()));
     }
 }

@@ -1,9 +1,9 @@
 using CliFx;
-using CliFx.Attributes;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 
 [Command("check-dirty-state")]
-public class CheckDirtyStateCommand(
+public partial class CheckDirtyStateCommand(
     IClusterClient clusterClient) : ICommand
 {
     public async ValueTask ExecuteAsync(IConsole console)

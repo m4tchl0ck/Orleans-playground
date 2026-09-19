@@ -21,7 +21,7 @@ using IHost clientHost = Host
 
 await clientHost.StartAsync();
 
-var cliApplication = clientHost.Services.GetRequiredService<CliApplication>();
+var cliApplication = clientHost.Services.GetRequiredService<CommandLineApplication>();
 await cliApplication.RunAsync(args);
 
 await clientHost.StopAsync();

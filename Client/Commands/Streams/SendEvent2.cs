@@ -1,10 +1,10 @@
 using System.Xml;
 using CliFx;
-using CliFx.Attributes;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 
 [Command("send-event2")]
-public class SendEvent2(
+public partial class SendEvent2(
     IClusterClient clusterClient) : ICommand
 {
     public async ValueTask ExecuteAsync(IConsole console)

@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="4.0.104" />
     <PackageReference Include="AWSSDK.SQS" Version="4.0.100.14" />
-    <PackageReference Include="CliFx" Version="2.3.6" />
+    <PackageReference Include="CliFx" Version="3.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.12" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.12" />
     <PackageReference Include="Microsoft.Orleans.Client" Version="10.3.1" />
