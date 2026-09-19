@@ -16,10 +16,10 @@
     <PackageReference Include="Microsoft.Orleans.Client" Version="10.3.1" />
     <PackageReference Include="Microsoft.Orleans.Streaming" Version="10.3.1" />
     <PackageReference Include="Microsoft.Orleans.Streaming.SQS" Version="10.3.1" />
-    <PackageReference Include="OpenTelemetry" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.AutoInstrumentation" Version="1.11.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.12.0" />
+    <PackageReference Include="OpenTelemetry" Version="1.19.0" />
+    <PackageReference Include="OpenTelemetry.AutoInstrumentation" Version="1.16.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.19.0" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.19.0" />
   </ItemGroup>
 
   <ItemGroup>
