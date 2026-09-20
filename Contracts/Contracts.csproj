@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.Orleans.Sdk" Version="10.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../Orleans.Cqs/Orleans.Cqs.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../Contracts/Contracts.csproj" />
+    <ProjectReference Include="../Orleans.Cqs/Orleans.Cqs.csproj" />
   </ItemGroup>
 
   <ItemGroup>
