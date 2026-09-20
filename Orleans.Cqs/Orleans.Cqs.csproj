@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="10.3.1" />
     <PackageReference Include="Microsoft.Orleans.Sdk" Version="10.3.1" />
+    <PackageReference Include="Microsoft.Orleans.Streaming" Version="10.3.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.5" />
   </ItemGroup>
 </Project>

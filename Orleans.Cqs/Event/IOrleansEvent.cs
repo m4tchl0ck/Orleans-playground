@@ -1,6 +1,6 @@
 using Orleans.Streams;
 
-namespace Orleans.Cqrs;
+namespace Orleans.Cqs;
 
 public interface IOrleansEvent
 {

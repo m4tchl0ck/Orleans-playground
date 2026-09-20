@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-using Orleans.Cqrs;
+using Orleans.Cqs;
 
 [global::Orleans.Concurrency.StatelessWorker]
 internal class ExecutePluginQueryHandler(ILogger<ExecutePluginQueryHandler> logger)

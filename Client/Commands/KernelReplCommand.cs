@@ -1,10 +1,10 @@
 using CliFx;
 using CliFx.Binding;
 using CliFx.Infrastructure;
-using Orleans.Cqrs;
+using Orleans.Cqs;
 
 [Command("kernel")]
-public partial class KernelReplCommand(IBus bus) : CliFx.ICommand
+public partial class KernelReplCommand(IOrleansBus bus) : CliFx.ICommand
 {
     public async ValueTask ExecuteAsync(IConsole console)
     {

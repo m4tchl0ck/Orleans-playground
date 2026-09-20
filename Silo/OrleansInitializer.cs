@@ -23,7 +23,6 @@ public static class OrleansInitializer
                     .UseLocalhostClustering(
                         siloPort: 11111,
                         gatewayPort: 30001)
-                    .UseDashboard(o => {})
                     .AddActivityPropagation()
                     .AddMemoryGrainStorageAsDefault()
                     .AddDynamoDBGrainStorageAsDefault()

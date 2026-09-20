@@ -1,4 +1,4 @@
-using Orleans.Cqrs;
+using Orleans.Cqs;
 
 [GenerateSerializer]
 public record PluginsResult(
