@@ -1,23 +1,23 @@
 using CliFx;
 using CliFx.Binding;
 using CliFx.Infrastructure;
+using Orleans.Cqrs;
 
 [Command("kernel")]
-public partial class KernelReplCommand(IClusterClient clusterClient) : ICommand
+public partial class KernelReplCommand(IBus bus) : CliFx.ICommand
 {
     public async ValueTask ExecuteAsync(IConsole console)
     {
-        var kernel = clusterClient.GetGrain<IKernelGrain>(0);
+        var result = await bus.RunQuery(new GetPluginsQuery(Guid.NewGuid().ToString()));
 
-        var plugins = await kernel.GetLoadedPlugins();
-        if (plugins.Count == 0)
+        if (result.Plugins.Count == 0)
         {
             await console.Output.WriteLineAsync("No plugins registered. Start plugin silos first.");
             return;
         }
 
-        await console.Output.WriteLineAsync($"Kernel connected — {plugins.Count} plugin(s) loaded:");
-        foreach (var p in plugins)
+        await console.Output.WriteLineAsync($"Kernel connected — {result.Plugins.Count} plugin(s) loaded:");
+        foreach (var p in result.Plugins)
             await console.Output.WriteLineAsync($"  · {p.Name,-12} {p.Description}");
         await console.Output.WriteLineAsync("Type 'help' for commands, 'exit' to quit.");
         await console.Output.WriteLineAsync();
@@ -32,17 +32,17 @@ public partial class KernelReplCommand(IClusterClient clusterClient) : ICommand
 
             if (line.Equals("help", StringComparison.OrdinalIgnoreCase))
             {
-                var loaded = await kernel.GetLoadedPlugins();
-                foreach (var p in loaded)
+                var loaded = await bus.RunQuery(new GetPluginsQuery(Guid.NewGuid().ToString()));
+                foreach (var p in loaded.Plugins)
                     await console.Output.WriteLineAsync(
                         $"[{p.Name}]  {string.Join("  ", p.Commands)}");
                 continue;
             }
 
             var parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            var result = await kernel.Dispatch(parts[0], parts[1..]);
+            var executeResult = await bus.RunQuery(new ExecutePluginQuery(parts[0], parts[1..]));
             await console.Output.WriteLineAsync(
-                result ?? $"Unknown command '{parts[0]}'. Type 'help'.");
+                executeResult.Output ?? $"Unknown command '{parts[0]}'. Type 'help'.");
         }
     }
 }
