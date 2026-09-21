@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Orleans.Configuration;
+using Orleans.Cqs;
 using Orleans.Providers;
 
 public static class OrleansInitializer
@@ -17,6 +18,7 @@ public static class OrleansInitializer
                         services
                             .AddOptions<DynamoDBStorageOptions>(ProviderConstants.DEFAULT_STORAGE_PROVIDER_NAME)
                                 .BindConfiguration(nameof(DynamoDBStorageOptions));
+                        services.AddOrleansCqs();
                     })
                     .UseLocalhostClustering(
                         siloPort: 11111,

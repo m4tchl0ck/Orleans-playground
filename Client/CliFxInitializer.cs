@@ -11,6 +11,8 @@ public static class CliFxInitializer
                 collection
                     .AddTransient<InteractiveCommand>()
                     .AddTransient<SayHelloCommand>()
+                    .AddTransient<GreetingSetCommand>()
+                    .AddTransient<GreetingGetCommand>()
 #if (INCLUDE_ADVANCED_EXAMPLES)
                     .AddTransient<CheckDirtyStateCommand>()
                     .AddTransient<SendEvent1>()

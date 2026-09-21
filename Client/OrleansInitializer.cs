@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Orleans.Configuration;
+using Orleans.Cqs;
 
 public static class OrleansInitializer
 {
@@ -9,9 +10,12 @@ public static class OrleansInitializer
             .UseOrleansClient(clientBuilder =>
                 clientBuilder
                     .ConfigureServices(services =>
+                    {
                         services
                             .AddOptions<ClusterOptions>()
-                                .BindConfiguration(nameof(ClusterOptions)))
+                                .BindConfiguration(nameof(ClusterOptions));
+                        services.AddOrleansClusterCqs();
+                    })
                     .UseLocalhostClustering(gatewayPort: 30001)
                     .AddSqsStreams(StreamConstants.ProviderName, options =>
                     {
