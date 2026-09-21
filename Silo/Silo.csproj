@@ -8,20 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.DynamoDBv2" Version="4.0.13" />
-    <PackageReference Include="AWSSDK.SQS" Version="4.0.2.14" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.2" />
-    <PackageReference Include="Microsoft.Orleans.Clustering.DynamoDB" Version="10.0.0" />
-    <PackageReference Include="Microsoft.Orleans.Persistence.DynamoDB" Version="10.0.0" />
-    <PackageReference Include="Microsoft.Orleans.Reminders.DynamoDB" Version="10.0.0" />
-    <PackageReference Include="Microsoft.Orleans.Server" Version="10.0.0" />
-    <PackageReference Include="Microsoft.Orleans.Streaming" Version="10.0.0" />
-    <PackageReference Include="Microsoft.Orleans.Streaming.SQS" Version="10.0.0" />
-    <PackageReference Include="OpenTelemetry" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.AutoInstrumentation" Version="1.11.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.12.0" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="4.0.104" />
+    <PackageReference Include="AWSSDK.SQS" Version="4.0.100.14" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.12" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.12" />
+    <PackageReference Include="Microsoft.Orleans.Clustering.DynamoDB" Version="10.3.1" />
+    <PackageReference Include="Microsoft.Orleans.Persistence.DynamoDB" Version="10.3.1" />
+    <PackageReference Include="Microsoft.Orleans.Reminders.DynamoDB" Version="10.3.1" />
+    <PackageReference Include="Microsoft.Orleans.Server" Version="10.3.1" />
+    <PackageReference Include="Microsoft.Orleans.Streaming" Version="10.3.1" />
+    <PackageReference Include="Microsoft.Orleans.Streaming.SQS" Version="10.3.1" />
+    <PackageReference Include="OpenTelemetry" Version="1.19.0" />
+    <PackageReference Include="OpenTelemetry.AutoInstrumentation" Version="1.16.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.19.0" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.19.0" />
     <PackageReference Include="OrleansDashboard" Version="8.2.0" />
   </ItemGroup>
 

@@ -1,12 +1,12 @@
 using CliFx;
-using CliFx.Attributes;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 using Microsoft.Extensions.Logging;
 
 [Command]
-public class InteractiveCommand(
+public partial class InteractiveCommand(
     ILogger<InteractiveCommand> logger,
-    CliApplication cliApplication
+    CommandLineApplication cliApplication
     ) : ICommand
 {
     public async ValueTask ExecuteAsync(IConsole console)

@@ -1,13 +1,13 @@
 using CliFx;
-using CliFx.Attributes;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 
 [Command("throw-custom-exception")]
-public class ThrowCustomExceptionCommand(
+public partial class ThrowCustomExceptionCommand(
     IClusterClient clusterClient) : ICommand
 {
     [CommandOption("grainId", 'g')]
-    public string GrainId { get; init; } = "grain1-0";
+    public string GrainId { get; set; } = "grain1-0";
 
     public async ValueTask ExecuteAsync(IConsole console)
     {

@@ -1,18 +1,18 @@
 
 
 using CliFx;
-using CliFx.Attributes;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-public abstract class StateCommand<TGrain>(
+public abstract partial class StateCommand<TGrain>(
     IClusterClient clusterClient,
     ILogger<StateCommand<TGrain>> logger) : ICommand
     where TGrain : ICreateable
 {
     [CommandOption("grainId", 'g')]
-    public string GrainId { get; init; } = "grain1-0";
+    public string GrainId { get; set; } = "grain1-0";
 
     public async ValueTask ExecuteAsync(IConsole console)
     {
@@ -31,26 +31,26 @@ public abstract class StateCommand<TGrain>(
 }
 
 [Command("state-as-class")]
-public class StateAsClassCommand(
+public partial class StateAsClassCommand(
     IClusterClient clusterClient,
     ILogger<StateAsClassCommand> logger) : StateCommand<IGrainWithStateAsClass>(clusterClient, logger);
 
 [Command("state-as-struct")]
-public class StateAsStructCommand(
+public partial class StateAsStructCommand(
     IClusterClient clusterClient,
     ILogger<StateAsStructCommand> logger) : StateCommand<IGrainWithStateAsStruct>(clusterClient, logger);
 
 [Command("state-as-struct-with-private-fields")]
-public class StateAsStructWithPrivateFieldsCommand(
+public partial class StateAsStructWithPrivateFieldsCommand(
     IClusterClient clusterClient,
     ILogger<StateAsStructWithPrivateFieldsCommand> logger) : StateCommand<IGrainWithStateAsStructWithPrivateFields>(clusterClient, logger);
 
 [Command("state-as-class-with-private-fields")]
-public class StateAsClassWithPrivateFieldsCommand(
+public partial class StateAsClassWithPrivateFieldsCommand(
     IClusterClient clusterClient,
     ILogger<StateAsClassWithPrivateFieldsCommand> logger) : StateCommand<IGrainWithStateAsClassWithPrivateFields>(clusterClient, logger);
 
 [Command("state-as-record-with-private-fields")]
-public class StateAsRecordWithPrivateFieldsCommand(
+public partial class StateAsRecordWithPrivateFieldsCommand(
     IClusterClient clusterClient,
     ILogger<StateAsRecordWithPrivateFieldsCommand> logger) : StateCommand<IGrainWithStateAsRecordWithPrivateFields>(clusterClient, logger);
