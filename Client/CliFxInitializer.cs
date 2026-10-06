@@ -13,6 +13,7 @@ public static class CliFxInitializer
                     .AddTransient<SayHelloCommand>()
                     .AddTransient<GreetingSetCommand>()
                     .AddTransient<GreetingGetCommand>()
+                    .AddTransient<KernelReplCommand>()
 #if (INCLUDE_ADVANCED_EXAMPLES)
                     .AddTransient<CheckDirtyStateCommand>()
                     .AddTransient<SendEvent1>()
